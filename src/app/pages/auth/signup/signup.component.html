@@ -1,0 +1,144 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="flex">
+    <mat-form-field class="example-full-width">
+      <mat-label>first name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="firstName"
+        formControlName="firstName"
+        required
+      />
+      @if (form.controls.firstName.hasError('containNumber') &&
+      !form.controls.firstName.hasError('required')) {
+      <mat-error>Name should not contain any number</mat-error>
+      } @if (form.controls.firstName.hasError('required')) {
+      <mat-error>Firstname is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>last name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="lastName"
+        formControlName="lastName"
+        required
+      />
+      @if (form.controls.lastName.hasError('containNumber') &&
+      !form.controls.lastName.hasError('required')) {
+      <mat-error>Name should not contain any number</mat-error>
+      } @if (form.controls.lastName.hasError('required')) {
+      <mat-error>LastName is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>age</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="age"
+      formControlName="age"
+      min="1"
+    />
+    @if (form.controls.firstName.hasError('lessThanOne')) {
+    <mat-error>Age greater than 1</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>username</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="username"
+      formControlName="username"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>email</mat-label>
+    <input
+      matInput
+      type="email"
+      placeholder="email"
+      formControlName="email"
+      required
+    />
+    @if (form.controls.email.hasError('email') &&
+    !form.controls.email.hasError('required')) {
+    <mat-error>Please enter a valid email address</mat-error>
+    } @if (form.controls.email.hasError('required')) {
+    <mat-error>Email is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <div class="flex gender">
+    <label for="male">Male</label>
+    <input
+      type="radio"
+      id="male"
+      name="gender"
+      value="male"
+      placeholder="username"
+      formControlName="gender"
+      required
+    />
+
+    <label for="female">Female</label>
+    <input
+      type="radio"
+      id="female"
+      name="gender"
+      value="female"
+      placeholder="username"
+      formControlName="gender"
+      required
+    />
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>password</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="password"
+      formControlName="password"
+      required
+      minlength="8"
+    />
+    @if (form.controls.password.hasError('minlength') &&
+    !form.controls.password.hasError('required')) {
+    <mat-error>Pasword length must be 8 at least</mat-error>
+    } @if (form.controls.password.hasError('required')) {
+    <mat-error>password is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>confirm password</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="confirm password"
+      formControlName="confirmPassword"
+      required
+      minlength="8"
+    />
+    @if (form.controls.confirmPassword.hasError('passwordNotEqual') &&
+    !form.controls.confirmPassword.hasError('required')) {
+    <mat-error>Confirm Password should match Password</mat-error>
+    } @if (form.controls.confirmPassword.hasError('required')) {
+    <mat-error>confirmPassword is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!form.valid">Sign up</button>
+</form>
+
+<!-- <p>firstName: <span>Emily</span></p>
+<p>lastName: <span>Johnson</span></p>
+<p>username: <span>emilys</span></p>
+<p>email: <span>{{dummyEmail}}</span></p>
+<p>paasword: <span>emilyspass</span></p> -->

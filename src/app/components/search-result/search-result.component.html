@@ -1,0 +1,19 @@
+@if(searchedItems().length > 0) {
+  <ul>
+    @for(item of paginatedItems; track item.idMeal) {
+      <li>
+        <app-recipe-item [recipeItem]="item"></app-recipe-item>
+      </li>
+    }
+  </ul>
+}
+@if(searchedItems().length > 3){
+  <mat-paginator
+    [length]="searchedItems().length"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPage"
+    (page)="onPageChange($event)"
+    aria-label="Select page">
+  </mat-paginator>
+}
+

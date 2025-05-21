@@ -1,0 +1,33 @@
+@use './../../../../styles/mixins' as *;
+
+// input{
+//     // @include style-input;
+//     // margin-bottom: 25px;
+//     display: block
+// }
+.gender{
+    margin-bottom: 25px;
+}
+mat-form-field{
+    @include mat-input-component-style;
+
+    @include mat-input-inside;
+
+    margin-bottom: 9px;
+    // mat-label{
+    //     color: #757575 !important;
+    // }
+     
+}
+button{
+    @include style-button;
+    display: block;
+    margin-bottom: 25px;
+}
+.flex{
+    display: flex;
+    gap: 25px;
+}
+input[type="radio"]{
+    width: fit-content;
+}

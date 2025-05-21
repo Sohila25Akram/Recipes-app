@@ -1,0 +1,35 @@
+  <!-- <mat-form-field>
+    <input matInput aria-label="search" [(ngModel)]="searchTerm" placeholder="search"/>
+  </mat-form-field> -->
+  <!-- <button mat-button (click)="searchMeal()" aria-label="search button">
+    search
+  </button> -->
+<app-wrapper>
+    <h2>Search results: {{searchedItem()}}</h2>
+    <div class="flex">
+      <input aria-label="search" [(ngModel)]="searchTerm" placeholder="search"/>
+      <button (click)="searchMeal()" aria-label="search button">
+        search
+      </button>
+    </div>
+    
+
+        <!-- <mat-spinner></mat-spinner> -->
+
+    <!-- @if(!isLoading){ 
+      @if(meals().length > 0){
+        <app-search-result/>
+      }@else{
+        <h2>Search about what you want! <mat-icon>search</mat-icon></h2>
+      }
+    }@else{
+      <mat-spinner></mat-spinner>
+    } -->
+
+    <div [appLoader]="isLoading">
+      <div>
+        <app-search-result/>
+      </div>
+    </div>
+  </app-wrapper>
+  

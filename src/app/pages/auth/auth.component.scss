@@ -1,0 +1,7 @@
+@use './../../../styles/mixins' as *;
+
+.container{
+    @include container;
+    max-width: 600px;
+    padding-top: 40px;
+}

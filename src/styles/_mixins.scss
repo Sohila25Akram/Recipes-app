@@ -1,0 +1,92 @@
+@mixin style-input{
+    // height: 50px;
+    // padding: 0 16px;
+    // display: block;
+    // width: 100%;
+    // background-color: transparent;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    // margin-bottom: 15px;
+    width: 100%;
+
+    &::placeholder{
+        text-transform: uppercase;
+    }
+}
+@mixin style-input-mat{
+  background-color: transparent;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+@mixin mat-input-component-style{
+  display: block;
+  width: 100% !important;
+  input{
+      // padding: 0 20px !important;
+    color: #757575 !important;
+      &::placeholder{
+          color: #ccc !important;
+      }
+  }
+  // label{
+  //                         color: #757575 !important;
+
+  // }
+}
+
+
+@mixin mat-input-inside{
+    ::ng-deep .mat-mdc-text-field-wrapper{
+        @include style-input-mat;
+    }
+    ::ng-deep .mdc-text-field{
+        border-radius: 0 !important;
+    }
+    ::ng-deep .mat-mdc-form-field-infix{
+        min-height: fit-content !important;
+        padding-top:20px !important;
+        padding-bottom: 0 !important;
+        label{
+          text-transform: uppercase;
+        }
+    }
+    ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+      font-size: 0.85rem !important;
+    }
+    ::ng-deep .mdc-line-ripple::before{
+        border-bottom: 0 !important;
+    }
+    ::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label{
+      top: initial;
+    }
+    ::ng-deep .mat-mdc-form-field-error-wrapper{
+      padding: 0;
+    }
+    ::ng-deep .mat-mdc-form-field-bottom-align::before{
+      height: fit-content !important;
+    }
+}
+
+@mixin style-button{
+     padding: 10px 20px;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    //   color: #ba005c;
+
+      &:hover {
+        background-color: #f7f7f7;
+      }
+}
+@mixin container{
+    width: 80%;
+    margin: 0 auto;
+}

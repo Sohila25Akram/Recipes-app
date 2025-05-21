@@ -1,0 +1,11 @@
+@use './../../../../styles/mixins' as *;
+
+input{
+    @include style-input;
+    margin-bottom: 25px;
+}
+button{
+    @include style-button;
+    display: block;
+    margin-bottom: 25px;
+}

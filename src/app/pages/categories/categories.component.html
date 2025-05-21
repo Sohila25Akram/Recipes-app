@@ -1,0 +1,7 @@
+<ul>
+@for(category of categoriesList(); track category.idCategory){
+    <li>
+        <app-category-card [category]="category"></app-category-card>
+    </li>
+}
+</ul>

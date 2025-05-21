@@ -1,0 +1,51 @@
+@use './../../../styles/mixins' as *;
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    @media (min-width:992px){
+       flex-direction: row;
+       align-items: center;
+    }
+    input{
+        @include style-input;
+    }
+    button{
+        @include style-button;
+        // width: fit-content;
+        // @{
+
+        // }
+    }
+}
+
+// .custom-spinner circle {
+//   stroke: #ec7532 !important;
+// }
+
+// .custom-spinner path {
+//   stroke: #ec7532 !important;
+// }
+
+// mat-spinner{
+//     background-color: #000 !important;
+// }
+// input{
+//     @include style-input;
+// }
+// button{
+//     margin-top: 25px;
+//     @include style-button;
+// }
+// .mat-mdc-button:not(:disabled){
+//     @include style-button;
+// }
+// .mat-mdc-button{
+//     border-radius: 0;
+// }
+// button:hover{
+//     background-color: #ba005c !important;
+//     color: #ffffff
+// }
+
