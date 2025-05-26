@@ -1,5 +1,9 @@
 @use './../../../../styles/mixins' as *;
 
+form{
+    padding-top: 60px;
+    position: relative;
+}
 input{
     @include style-input;
     margin-bottom: 25px;

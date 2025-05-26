@@ -25,4 +25,22 @@ h1, h2, h3{
     font-family: inherit;
     font-weight: $fontWeightBold;
 }
+.error{
+  position: absolute;
+  // top: 30px;
+  top: 0;
+  left: 0;
+  // border: 1px solid $mainRedColor;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: $lightRedColor;
+  color: $mainRedColor;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 14px;
+  mat-icon{
+    vertical-align: middle;
+  }
+}
 
