@@ -1,9 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
 import { RecipesService } from '../../services/recipes.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

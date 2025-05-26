@@ -12,7 +12,7 @@ export class RecipesService {
   private url = 'https://www.themealdb.com/api/json/v1/1';
 
   private apiService = inject(ApiService);
-  private authService = inject(AuthService);
+  // private authService = inject(AuthService);
 
   searchedMeals = signal<Meal[]>([]);
   categoriesList  = signal<Category[]>([]);
@@ -71,6 +71,7 @@ export class RecipesService {
     strCreativeCommonsConfirmed: null,
     dateModified: null
   });
+  recipesOfCategory = signal<Meal[]>([]);
 
   constructor(){
     this.loadCategories();
@@ -148,6 +149,18 @@ export class RecipesService {
       res => this.singleMeal.set(res.meals[0]) // get the first (and only) meal
     );
 
+  }
+
+  getRecipesOfCategory(categoryName: string){
+    this.apiService.request<{meals: Meal[]}>('GET', `${this.url}/filter.php`, {
+      params: {c: categoryName}
+    }).subscribe(res => this.recipesOfCategory.set(res.meals));
+  }
+
+  getSexRecipesOfCategory(categoryName: string){
+    return this.apiService.request<{meals: Meal[]}>('GET', `${this.url}/filter.php`, {
+      params: {c: categoryName}
+    }).pipe(map(res => res.meals), take(1));
   }
 
   addToFavourite(id: string){

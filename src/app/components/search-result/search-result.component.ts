@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { RecipeItemComponent } from '../recipe-item/recipe-item.component';
 import { RecipesService } from '../../services/recipes.service';
 import { Meal } from '../../models/meal.model';
 import { MatIconModule } from '@angular/material/icon';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { SearchedItemComponent } from '../searched-item/searched-item.component';
 
 @Component({
   selector: 'app-search-result',
@@ -13,7 +13,7 @@ import { BehaviorSubject, map, Observable, of } from 'rxjs';
   imports: [
     MatPaginatorModule,
     CommonModule,
-    RecipeItemComponent,
+    SearchedItemComponent
     // AsyncPipe
     // MatIconModule
   ],

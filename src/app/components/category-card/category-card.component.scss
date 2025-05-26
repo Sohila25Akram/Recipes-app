@@ -37,6 +37,11 @@ border: 1px solid #eee;;
       font-size: 1.5rem;
       font-weight: 600;
       color: #333;
+      a{
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
     }
 
     p {

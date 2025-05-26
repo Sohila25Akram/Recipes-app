@@ -42,7 +42,6 @@ export class FavoritesComponent {
 
   constructor() {
     effect(() => {
-      // const meals = this.recipesService.recipesAddedToFav();
       const data = this.recipesInFavorite();
       
       this.ngZone.runOutsideAngular(() => 
@@ -50,7 +49,6 @@ export class FavoritesComponent {
           this.dataSource.data = data;
         })
       )
-          // this.cdr.markForCheck();
     });
 
     

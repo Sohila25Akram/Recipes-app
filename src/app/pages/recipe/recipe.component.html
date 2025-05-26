@@ -1,6 +1,6 @@
 <app-wrapper>
     @if (recipe()) {
-    <div>
+    <section>
         <div class="flex">
             <h2>{{ recipe().strMeal }}</h2>
             <button mat-icon-button (click)="addToFav()">
@@ -11,7 +11,7 @@
         <div class="img-container">
             <img src="{{recipe().strMealThumb}}" alt="">
         </div>
-
+        <h3>ingredients</h3>
         <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -51,8 +51,9 @@
                 </tr>
             </tbody>
         </table> -->
+        <h3>intructions</h3>
         <p>{{recipe().strInstructions}}</p>
-    </div>
+    </section>
     }
 </app-wrapper>
 

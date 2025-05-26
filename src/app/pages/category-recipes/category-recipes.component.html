@@ -1,0 +1,14 @@
+<app-wrapper>
+    <section>
+        <app-category-card [category]="currentCategory()" [fullDesc]="true"></app-category-card>
+        <ul>
+            <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" style="height: 800px; width: 100%;">
+                <!-- @for(recipe of recipesOfCurrentCategory(); track recipe.idMeal){ -->
+                    <li *cdkVirtualFor="let recipe of recipesOfCurrentCategory(); trackBy: trackById" >
+                        <app-recipe-item [recipeItem]="recipe" [path]="['../../recipes', recipe.idMeal]"></app-recipe-item>
+                    </li>
+                <!-- } -->
+            </cdk-virtual-scroll-viewport>
+        </ul>
+    </section>
+</app-wrapper>

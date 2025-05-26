@@ -1,0 +1,19 @@
+<app-wrapper>
+  <div>
+    @for(category of allCategories(); track category.idCategory){
+        <section>
+            <div class="flex">
+                <h2 #categoryTitle>{{category.strCategory}}</h2>
+                <a [routerLink]="[category.strCategory, 'recipes']">view more</a>
+            </div>
+            <ul>
+                @for(recipe of getRecipes(category.strCategory); track recipe.idMeal){
+                    <li>
+                        <app-recipe-item [recipeItem]="recipe"></app-recipe-item>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+  </div>
+</app-wrapper>

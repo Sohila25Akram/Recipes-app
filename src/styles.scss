@@ -12,4 +12,15 @@ html, body, .example-container, mat-drawer-container {
 *{
     box-sizing: border-box;
 }
+body{
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+p{
+  color: #333;
+}
+h1, h2, h3{
+    font-family: inherit;
+    font-weight: 600;
+}
 

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -21,6 +22,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
   imports: [WrapperComponent, MatButtonModule, MatIconModule, MatTableModule],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RecipeComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);

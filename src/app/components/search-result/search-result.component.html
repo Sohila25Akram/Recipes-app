@@ -2,7 +2,7 @@
   <ul>
     @for(item of paginatedItems; track item.idMeal) {
       <li>
-        <app-recipe-item [recipeItem]="item"></app-recipe-item>
+        <app-searched-item [recipeItem]="item" [path]="['../recipes', item.idMeal]"></app-searched-item>
       </li>
     }
   </ul>

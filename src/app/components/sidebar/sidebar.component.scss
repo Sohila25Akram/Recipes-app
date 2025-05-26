@@ -9,17 +9,7 @@ section{
     // width: 100%;
 
     h3{
-        font-size: 12px;
-        color: #111;
-        line-height: 15px;
-        font-weight: 400;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-        display: inline-block;
-        border-bottom: 1px solid #ba005c;
-        margin:  0 0 25px 0;
-        padding-bottom: 7px;
+        @include heads-style;
        
     }
 }

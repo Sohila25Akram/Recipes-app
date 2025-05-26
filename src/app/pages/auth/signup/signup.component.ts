@@ -71,15 +71,15 @@ export class SignupComponent implements OnDestroy{
   dummyEmail = 'emily.johnson@x.dummyjson.com'
 
   form = new FormGroup({
-    firstName: new FormControl('', {validators: [Validators.required, notContainsNumber ],  updateOn: "blur"}),
-    lastName: new FormControl('', {validators: [Validators.required, notContainsNumber ],  updateOn: "blur"}),
-    age: new FormControl(null, {validators: [notbeNegativeNumberOrZero], updateOn: "blur"}),
+    firstName: new FormControl('', {validators: [Validators.required, notContainsNumber]}),
+    lastName: new FormControl('', {validators: [Validators.required, notContainsNumber]}),
+    age: new FormControl(null, {validators: [notbeNegativeNumberOrZero]}),
     username: new FormControl(),
-    email: new FormControl('', {validators: [Validators.required, Validators.email], updateOn: "blur"}),
+    email: new FormControl('', {validators: [Validators.required, Validators.email]}),
     gender: new FormControl(),
-    password: new FormControl('', {validators: [Validators.required,Validators.minLength(8)], updateOn: "blur"}),
-    confirmPassword: new FormControl('', {validators: [Validators.required], updateOn: "blur"})
-  }, { validators: shouldMatchPassword, updateOn: "blur" })
+    password: new FormControl('', {validators: [Validators.required,Validators.minLength(8)]}),
+    confirmPassword: new FormControl('', {validators: [Validators.required]})
+  }, { validators: shouldMatchPassword })
 
   
     

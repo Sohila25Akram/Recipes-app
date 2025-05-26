@@ -10,4 +10,5 @@ import { RouterLink } from '@angular/router';
 })
 export class RecipeItemComponent {
   @Input() recipeItem!: Meal;
+  @Input() path!: any;
 }

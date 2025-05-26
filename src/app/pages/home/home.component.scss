@@ -1,0 +1,30 @@
+section{
+    border-bottom: 1px solid #ccc;
+
+    .flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2{
+            text-transform: capitalize;
+        }
+        a{
+            display: block;
+        }
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap:32px;
+
+        @media (min-width: 992px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (min-width: 1200px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
