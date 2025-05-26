@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as *;
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -5,22 +7,22 @@ input{
     border: 0;
     outline: 0;
     background-color: transparent;
-    color: #fff
+    color: $whiteColor
 }
 input::placeholder{
-  color: #fff;
+  color: $whiteColor;
 }
 mat-toolbar.search-bar{
-  background-color: #ba005c;
+  background-color: $mainRedColor;
   height: fit-content;
 }
 mat-toolbar.search-bar mat-icon{
-  color: #fff;
+  color: $whiteColor;
   font-size: 18px;
   height: fit-content;
 }
 mat-toolbar.nav-bar{
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $borderColor;
   width: 80%;
   margin: 0 auto;
   padding: 0; 

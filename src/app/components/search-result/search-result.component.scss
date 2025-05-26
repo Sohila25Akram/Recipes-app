@@ -1,3 +1,5 @@
+@use '../../../styles//variables' as *;
+
 ul{
     padding: 0;
 
@@ -50,25 +52,25 @@ ul{
 
 ::ng-deep .mat-mdc-icon-button.mat-mdc-button-disabled-interactive{
     // background-color: #000 !important;
-    border: 1px solid #ba005c;
-    color: #ba005c !important;
+    border: 1px solid $mainRedColor;
+    color: $mainRedColor !important;
     content: '<p>next</p>' !important;
     width: fit-content !important;
     border-radius: 0;
 }
 ::ng-deep .mat-mdc-icon-button.mat-mdc-button-disabled-interactive:first-of-type:before {
   content: 'prev';
-  color: #ba005c;
+  color: $mainRedColor;
   font-weight: 500;
-  font-size: 14px;
+  font-size: $fieldSize;
   display: inline-block;
   text-transform: uppercase;
 }
 ::ng-deep .mat-mdc-icon-button.mat-mdc-button-disabled-interactive:last-of-type:before {
   content: 'next';
-  color: #ba005c;
+  color: $mainRedColor;
   font-weight: 500;
-  font-size: 14px;
+  font-size: $fieldSize;
   display: inline-block;
   text-transform: uppercase;
 }

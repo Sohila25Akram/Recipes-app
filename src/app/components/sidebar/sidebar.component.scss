@@ -1,9 +1,10 @@
+@use './../../../styles/variables' as *;
 @use './../../../styles/mixins' as *;
 
 section{
-    border: 1px solid #ccc;
+    border: 1px solid $borderColor;
     margin-bottom: 40px;
-    background-color: #fff;
+    background-color: $whiteColor;
     padding: 20px;
     text-align: center;
     // width: 100%;
@@ -22,7 +23,7 @@ section{
         line-height: 14px !important;
         letter-spacing: .5px;
         display: inline-block;
-        background-color: #eee;
+        background-color: $borderColor;
         text-decoration: none;
         padding: 4px 12px;
         text-transform: uppercase;

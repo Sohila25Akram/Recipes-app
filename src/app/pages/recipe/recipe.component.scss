@@ -1,3 +1,4 @@
+@use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
 section{
@@ -21,13 +22,13 @@ section{
     }
     table{
         border-collapse: collapse;
-        background: #fff;
+        background: $whiteColor;
         td{
             // border: 1px solid #ccc;
             border: 1px solid #cccccc75;
             padding: 4px 16px;
-            color: #333;
-            font-family: "Segoe UI", sans-serif;
+            color: $textColorBlackLight;
+            font-family: $fontFamily;
         }
     }
 

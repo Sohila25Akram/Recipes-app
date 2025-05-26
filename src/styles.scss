@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 // @import './styles/mixins';
+@use './styles/variables' as *;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 html, body, .example-container, mat-drawer-container {
   height: 100%;
@@ -13,14 +15,14 @@ html, body, .example-container, mat-drawer-container {
     box-sizing: border-box;
 }
 body{
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
+    font-family: $fontFamily;
+    color: $textColorBlackLight;
 }
 p{
-  color: #333;
+  color: $textColorBlackLight;
 }
 h1, h2, h3{
     font-family: inherit;
-    font-weight: 600;
+    font-weight: $fontWeightBold;
 }
 

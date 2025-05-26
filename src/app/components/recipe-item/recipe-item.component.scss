@@ -1,3 +1,4 @@
+@use './../../../styles/variables' as *;
 @use './../../../styles/mixins' as *;
 
 .recipe-card {
@@ -24,7 +25,7 @@
   .content {
 
     .title {
-      font-size: 1.5rem;
+      font-size: $titleSize;
       font-weight: 600;
       margin: 8px 0;
       a{
@@ -35,7 +36,7 @@
     }
 
     .meta {
-      font-size: 0.9rem;
+      font-size: $metaSize;
       color: #888;
       margin: 0 0 15px;
 
