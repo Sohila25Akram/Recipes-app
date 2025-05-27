@@ -88,14 +88,18 @@
 }
 
 @mixin style-button{
-     padding: 10px 20px;
+      min-width: 89px;
+      height: 38px;
       background-color: transparent;
       border: 1px solid $grayColorLight;
       cursor: pointer;
       text-transform: uppercase;
       font-size: $fieldSize;
       letter-spacing: 1px;
-    //   color: #ba005c;
+    &:disabled{
+     background-color: $mainRedColor;
+     opacity: .3;
+    }
 
       &:hover {
         background-color: #f7f7f7;

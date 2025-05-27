@@ -1,3 +1,4 @@
+@use './../../../../styles/variables' as *;
 @use './../../../../styles/mixins' as *;
 
 // input{
@@ -23,6 +24,16 @@ button{
     @include style-button;
     display: block;
     margin-bottom: 25px;
+    padding: 0 !important;
+    min-width: 103px;
+}
+.text{
+    width: 100%;
+    height: 100%;
+    background-color: $mainRedColor;
+    color: $whiteColor;
+    padding: 10px 20px;
+
 }
 .flex{
     display: flex;

@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, NgZone, OnDestroy, signal } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { AbstractControl, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
 import { catchError, debounceTime, map, of, Subject, take, takeUntil } from 'rxjs';
+import { LoaderDirective } from '../../../directives/loader.directive';
+import { Router } from '@angular/router';
 
 
 function notContainsNumber(control: AbstractControl) {
@@ -56,17 +58,21 @@ export class MyErrorStateMatcher implements MyErrorStateMatcher {
 
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, LoaderDirective],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignupComponent implements OnDestroy{
    private authService = inject(AuthService);
+   private router = inject(Router);
    private destroy$ = new Subject<void>();
+   private ngZone = inject(NgZone);
+
 
   isLoggged = signal(false);
   currentForm : 'Login' | 'Signup' = 'Signup';
+  isLoading = signal<boolean>(false);
 
   dummyEmail = 'emily.johnson@x.dummyjson.com'
 
@@ -81,8 +87,6 @@ export class SignupComponent implements OnDestroy{
     confirmPassword: new FormControl('', {validators: [Validators.required]})
   }, { validators: shouldMatchPassword })
 
-  
-    
   
   onSubmit(){
     if(!this.form.valid){
@@ -101,9 +105,19 @@ export class SignupComponent implements OnDestroy{
 
     console.log(firstName, lastName, age, username, email ,gender,password, confirmPassword)
     
-    this.authService.signup(firstName, lastName, age, username, email, gender, password!, confirmPassword).pipe(
-      debounceTime(2000), takeUntil(this.destroy$)).subscribe((res) => console.log(res));
-    
+    this.isLoading.set(true);
+
+    this.ngZone.runOutsideAngular(() => 
+      setTimeout(() => {
+        this.authService.signup(firstName, lastName, age, username, email, gender, password!, confirmPassword).pipe(
+        takeUntil(this.destroy$)).subscribe(
+          (res) => {
+            console.log(res);
+            this.isLoading.set(false);
+            this.router.navigateByUrl('/auth');
+          });
+      }, 3000)
+    )
   }
 
   ngOnDestroy(): void {

@@ -73,7 +73,7 @@ export class SearchComponent implements OnDestroy {
         }
         });
         this.isLoading = false;
-      }, 3000)
+      }, 10000)
     )
     console.log('Clicked!');
   }

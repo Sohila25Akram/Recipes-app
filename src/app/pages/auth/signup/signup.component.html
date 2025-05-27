@@ -134,7 +134,11 @@
     }
   </mat-form-field>
 
-  <button type="submit" [disabled]="!form.valid">Sign up</button>
+  <button type="submit" [disabled]="!form.valid">
+    <div [appLoader]="isLoading()" [isButton]="true">
+      <div class="text">Sign up</div>
+    </div>
+  </button>
 </form>
 
 <!-- <p>firstName: <span>Emily</span></p>

@@ -4,7 +4,12 @@
     }
     <input type="text" placeholder="username" formControlName = "username" required>
     <input type="password" placeholder="password" formControlName = "password" required minlength="8">
-    <button type="submit" [disabled]="!form.valid">Login</button>
+
+    <button type="submit" [disabled]="!form.valid">
+        <div [appLoader]="isLoading()" [isButton]="true">
+            <div class="text">Login</div>
+        </div>
+    </button>
     <a routerLink="signup">I don't have account</a>
 </form>
 

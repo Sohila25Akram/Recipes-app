@@ -1,0 +1,8 @@
+::ng-deep mat-spinner{
+    margin: 60px auto 0;
+    &.loader-button{
+        margin-top: 0;
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
