@@ -11,5 +11,4 @@ import { EllipsisTextPipe } from '../../pipes/ellipsis-text.pipe';
 })
 export class SearchedItemComponent {
   @Input() recipeItem!: Meal;
-  @Input() path!: any;
 }

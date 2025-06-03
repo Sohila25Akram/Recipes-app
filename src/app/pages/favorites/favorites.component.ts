@@ -47,7 +47,7 @@ export class FavoritesComponent {
       this.ngZone.runOutsideAngular(() => 
         setTimeout(() => {
           this.dataSource.data = data;
-        })
+        }, 2000)
       )
     });
 

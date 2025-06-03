@@ -64,42 +64,42 @@ export class RecipeComponent implements OnInit {
     // this.currentRecipe$ = this.recipesService.getRecipeDetails(this.currentMealId);
   }
 
-  constructor() {
-    effect(() => {
-      const newIngredients: string[] = [];
-      const newMeasures: string[] = [];
+  // constructor() {
+  //   effect(() => {
+  //     const newIngredients: string[] = [];
+  //     const newMeasures: string[] = [];
 
-      const currentRecipe = this.recipe();
+  //     const currentRecipe = this.recipe();
 
-      for (let i = 1; i <= 20; i++) {
-        const ingredientKey = `strIngredient${i}` as keyof Meal;
-        const measureKey = `strMeasure${i}` as keyof Meal;
+  //     for (let i = 1; i <= 20; i++) {
+  //       const ingredientKey = `strIngredient${i}` as keyof Meal;
+  //       const measureKey = `strMeasure${i}` as keyof Meal;
 
-        const ingredient = currentRecipe[ingredientKey];
-        const measure = currentRecipe[measureKey];
+  //       const ingredient = currentRecipe[ingredientKey];
+  //       const measure = currentRecipe[measureKey];
 
-        if (ingredient && ingredient !== '') {
-          newIngredients.push(ingredient);
-          newMeasures.push(measure ?? '');
-        }
-      }
+  //       if (ingredient && ingredient !== '') {
+  //         newIngredients.push(ingredient);
+  //         newMeasures.push(measure ?? '');
+  //       }
+  //     }
 
-      this.ingredients.set(newIngredients);
-      this.measures.set(newMeasures);
+  //     this.ingredients.set(newIngredients);
+  //     this.measures.set(newMeasures);
 
-      // console.log(this.ingredients());
-    });
-  }
+  //     // console.log(this.ingredients());
+  //   });
+  // }
 
-  displayedColumns: string[] = ['ingredient', 'measure'];
-  // dataSource = signal<PeriodicElement[]>([]);
+  // displayedColumns: string[] = ['ingredient', 'measure'];
+  // // dataSource = signal<PeriodicElement[]>([]);
 
-  dataSource = computed(() =>
-    this.ingredients().map((ingredient, index) => ({
-      ingredient,
-      measure: this.measures()[index] ?? '',
-    }))
-  );
+  // dataSource = computed(() =>
+  //   this.ingredients().map((ingredient, index) => ({
+  //     ingredient,
+  //     measure: this.measures()[index] ?? '',
+  //   }))
+  // );
 
   // constructor() {
   // effect(() => {

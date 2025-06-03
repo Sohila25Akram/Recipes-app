@@ -6,17 +6,26 @@ import { LoaderComponent } from '../components/loader/loader.component';
   standalone: true,
 })
 export class LoaderDirective implements OnChanges{
-  isLoading = input(false, { alias: 'appLoader' });
-  isButton = input(false);
+  // isLoading = input(false, { alias: 'appLoader' });
+  // isButton = input(false);
 
-  private renderer = inject(Renderer2);
-  private el = inject(ElementRef);
-  private templateContent = inject(ViewContainerRef)
+  @Input('appLoader') isLoading = false;
+  @Input() isButton = false;
+
+  // private renderer = inject(Renderer2);
+  // private el = inject(ElementRef);
+  // private templateContent = inject(ViewContainerRef)
   // private spinnerRef: HTMLElement | null = null;
+
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private templateContent: ViewContainerRef
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {  
     if(changes['isLoading']){
-      if(this.isLoading()){
+      if(this.isLoading){
         this.addLoader();
       }else{
         this.removeLoader();
@@ -32,7 +41,7 @@ export class LoaderDirective implements OnChanges{
     
     const loaderRef = this.templateContent.createComponent(LoaderComponent);
 
-    if (this.isButton()) {
+    if (this.isButton) {
       const loaderElement = loaderRef.location.nativeElement.querySelector('mat-spinner');
       if (loaderElement) {
         this.renderer.addClass(loaderElement, 'loader-button');

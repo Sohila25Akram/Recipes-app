@@ -50,7 +50,10 @@ export class SearchComponent implements OnDestroy {
 
   constructor(){
     afterNextRender(()=>{
-      this.searchedItem.set(localStorage.getItem('searchedItem') || '');
+      const term  = localStorage.getItem('searchedItem');
+      if(term){
+        this.searchedItem.set(term);
+      }
     })
   }
 
@@ -72,7 +75,6 @@ export class SearchComponent implements OnDestroy {
           this.cdr.markForCheck();
         }
         });
-        this.isLoading = false;
       }, 3000)
     )
     console.log('Clicked!');

@@ -24,15 +24,14 @@ export class CategoryRecipesComponent implements OnInit{
   ngOnInit() {
     const supscription = this.activatedRoute.paramMap.subscribe({
       next: (paramMap) => {
-        const categoryName = paramMap.get('category-name');
+        const categoryName = paramMap.get('categoryName');
         if (categoryName) {
           this.currentCategoryName = categoryName;
+          this.recipesService.getRecipesOfCategory(this.currentCategoryName)
         }
       },
     });
     this.destroyRef.onDestroy(() => supscription.unsubscribe());
-
-    this.recipesService.getRecipesOfCategory(this.currentCategoryName)
   }
 
   currentCategory = computed(() => 

@@ -30,7 +30,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/recipe/recipe.component').then(c => c.RecipeComponent),
     },
     {
-        path: ':category-name/recipes',
+        path: ':categoryName/recipes',
         loadComponent: () => import('./pages/category-recipes/category-recipes.component').then(c => c.CategoryRecipesComponent)
     }
 ];

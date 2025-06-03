@@ -1,6 +1,6 @@
 <div>
   <mat-toolbar class="search-bar">
-      <button mat-icon-button (click)="searchMeal()" class="example-icon" aria-label="Example icon-button with menu icon">
+      <button mat-icon-button (click)="searchMeal()" class="search-icon" aria-label="Example icon-button with menu icon">
           <mat-icon>search</mat-icon>
       </button>
         <!-- <mat-form-field>
@@ -8,7 +8,7 @@
     </mat-form-field> -->
       <input aria-label="search" [(ngModel)]="searchTerm" placeholder="Type to Search..."/>
     <span class="example-spacer"></span>
-    <button mat-icon-button (click)="goToFav()" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button (click)="goToFav()" class="favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
@@ -16,15 +16,13 @@
     </button>
   </mat-toolbar>
   <mat-toolbar class="nav-bar">
-    <h1>Logo</h1>
+    <h1>Recipes</h1>
       <!-- <mat-form-field>
     <input matInput aria-label="search" [(ngModel)]="searchTerm" placeholder="Type to Search..."/>
   </mat-form-field> -->
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" (click)="onToggle()" aria-label="Example icon-button with heart icon">
-      <mat-icon>
-       {{ isOpen ? 'close' : 'menu' }}
-      </mat-icon>
+    <button mat-icon-button class="menu-icon" (click)="onToggle()" aria-label="Example icon-button with heart icon">
+      <mat-icon>{{ isOpen ? 'close' : 'menu' }}</mat-icon>
     </button>
   </mat-toolbar>
 </div>

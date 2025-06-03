@@ -79,7 +79,7 @@ export class RecipesService {
       this.recipesAddedToFav.set(this.loadFavoritesFromLocalStorage())
     })
   }
-  private loadCategories(){
+  loadCategories(){
     this.apiService.request<{ categories: Category[] }>('GET', `${this.url}/categories.php`)
     .pipe(
       map(res => [...res.categories].reverse())
@@ -112,7 +112,12 @@ export class RecipesService {
       //         localStorage.setItem('searchedItem' , term);
 
       // }
-    ), tap(meals => this.searchedMeals.set(meals)));
+    ), tap(meals => {
+      this.searchedMeals.set(meals);
+      if(term){
+        localStorage.setItem('searchedItem', term);
+      }
+    }))
     // this.destroyRef.onDestroy(() => supsription.unsubscribe())
 
 
@@ -164,7 +169,12 @@ export class RecipesService {
   }
 
   addToFavourite(id: string){
-    const recipe = this.searchedMeals().find(r => r.idMeal === id);
+    const categoryRecipes = this.recipesOfCategory() || [];
+    const searchedRecipes = this.searchedMeals() || [];
+
+    const allRecipes = [...categoryRecipes, ...searchedRecipes];
+
+    const recipe = allRecipes.find(r => r.idMeal === id);
 
     if(recipe && !this.recipesAddedToFav().some(r => r.idMeal === id)){
       this.recipesAddedToFav.update((favorites) => [...favorites, recipe]);

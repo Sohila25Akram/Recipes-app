@@ -86,7 +86,7 @@ export class AuthService {
 
   }
 
-  signup(firstName: string, lastName: string, age:number, username: string, email: string, gender: 'male' | 'female', password: string, image?: string){
+  signup(firstName: string, lastName: string, age:number, username: string, email: string, gender: string, password: string, image?: string){
      return this.apiService.request<User>('POST', `${this.url}/add`, {
       body : {
         firstName,

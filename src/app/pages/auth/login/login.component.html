@@ -2,8 +2,8 @@
     @if(isError()){
         <div class="error"><mat-icon>error</mat-icon> invalid username or password</div>
     }
-    <input type="text" placeholder="username" formControlName = "username" required>
-    <input type="password" placeholder="password" formControlName = "password" required minlength="8">
+    <input type="text" id="username" placeholder="username" formControlName = "username" required>
+    <input type="password" id="password" placeholder="password" formControlName = "password" required minlength="8">
 
     <button type="submit" [disabled]="!form.valid">
         <div [appLoader]="isLoading()" [isButton]="true">

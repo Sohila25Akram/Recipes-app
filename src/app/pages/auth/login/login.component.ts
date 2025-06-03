@@ -3,7 +3,6 @@ import { AuthService } from '../../../services/auth.service';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { catchError, map, of, Subject, takeUntil } from 'rxjs';
-import { error } from 'console';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderDirective } from '../../../directives/loader.directive';

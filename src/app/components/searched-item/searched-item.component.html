@@ -1,17 +1,16 @@
-<div class="recipe-card">
-  <div class="image-wrapper">
-    <img src="{{ recipeItem.strMealThumb }}" alt="{{ recipeItem.strMeal }}" />
+@if(recipeItem){
+  <div class="recipe-card">
+    <div class="image-wrapper">
+      <img src="{{ recipeItem.strMealThumb }}" alt="{{ recipeItem.strMeal }}" />
+    </div>
+    <div class="content">
+      <h2 class="title">{{ recipeItem.strMeal }}</h2>
+      <p class="meta">October 9, 2023 / <span class="author">Lucid Themes</span></p>
+      <p class="description">{{ recipeItem.strInstructions | ellipsisText }}</p>
+      
+      <a class="read-more" [routerLink]="['../recipes', recipeItem.idMeal]">Continue Reading</a>
+    </div>
   </div>
-  <div class="content">
-    <h2 class="title">{{ recipeItem.strMeal }}</h2>
-    <p class="meta">October 9, 2023 / <span class="author">Lucid Themes</span></p>
-    @if(recipeItem.strInstructions){
-      <p class="description">
-        {{ recipeItem.strInstructions | ellipsisText }}
-      </p>
-    }
-    <a class="read-more" [routerLink]="path">Continue Reading</a>
-  </div>
-</div>
+}
 
 

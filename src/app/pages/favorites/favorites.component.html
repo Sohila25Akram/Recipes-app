@@ -30,7 +30,7 @@
         <td mat-cell *matCellDef="let element">
           <div class="flex">
                         <button mat-stroked-button [routerLink]="['../recipes', element.idMeal]">view details</button> 
-                <button (click)="deleteFromFav(element.idMeal)">Delete</button>
+                <button class="delete-btn" (click)="deleteFromFav(element.idMeal)">Delete</button>
           </div>
         </td>
         </ng-container>

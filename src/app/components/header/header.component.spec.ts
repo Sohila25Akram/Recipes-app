@@ -1,16 +1,39 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { RecipesService } from '../../services/recipes.service';
+import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let mockRecipesService: jasmine.SpyObj<RecipesService>;
+  let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
+    mockRecipesService = jasmine.createSpyObj('RecipesService', [
+      'searchMealByName',
+    ]);
+    mockRouter = jasmine.createSpyObj('Router', ['navigateByUrl']);
+
+    mockRouter.navigateByUrl.and.returnValue(Promise.resolve(true));
+
     await TestBed.configureTestingModule({
-      imports: [HeaderComponent]
-    })
-    .compileComponents();
+      imports: [HeaderComponent],
+      providers: [
+        {
+          provide: RecipesService,
+          useValue: mockRecipesService,
+        },
+        { provide: Router, useValue: mockRouter }
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -19,5 +42,115 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  describe('function called when click', () => {
+    it('should searchMeal() called when click on the button', () => {
+      const btnEl = fixture.debugElement.query(
+        By.css('.search-icon')
+      ).nativeElement;
+
+      spyOn(component, 'searchMeal');
+
+      btnEl.click();
+      fixture.detectChanges();
+
+      expect(component.searchMeal).toHaveBeenCalled();
+    });
+    it('should goToFav() called when click on the button', () => {
+      const btnEl = fixture.debugElement.query(
+        By.css('.favorite-icon')
+      ).nativeElement;
+
+      spyOn(component, 'goToFav');
+
+      btnEl.click();
+      fixture.detectChanges();
+
+      expect(component.goToFav).toHaveBeenCalled();
+    });
+    it('should onToggle() called when click on the button', () => {
+      const btnEl = fixture.debugElement.query(
+        By.css('.menu-icon')
+      ).nativeElement;
+
+      spyOn(component, 'onToggle');
+
+      btnEl.click();
+      fixture.detectChanges();
+
+      expect(component.onToggle).toHaveBeenCalled();
+    });
+  });
+
+  describe('input testing', () => {
+    it('should placeholder init value render', () => {
+      const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+
+      expect(inputEl.placeholder).toContain('Type to Search...');
+    });
+    it('should bind input value to searchTerm (ngModel)', () => {
+      const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+
+      inputEl.value = 'chocolate';
+      inputEl.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      expect(component.searchTerm).toBe('chocolate');
+    });
+    it('should reflect searchTerm value in the input field', fakeAsync(() => {
+      component.searchTerm = 'cheese';
+      fixture.detectChanges();
+      tick();
+
+      const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+      expect(inputEl.value).toBe('cheese');
+    }));
+  });
+  describe('isOpen', () => {
+    it('should menu icon returned when isOpen set to false', () => {
+      const iconEl = fixture.debugElement.query(By.css('.menu-icon mat-icon')).nativeElement;
+
+      component.isOpen = false;
+      fixture.detectChanges();
+
+      expect(iconEl.textContent).toBe('menu');
+    });
+     it('should close icon returned when isOpen set to true', () => {
+      const iconEl = fixture.debugElement.query(By.css('.menu-icon mat-icon')).nativeElement;
+
+      component.isOpen = true;
+      fixture.detectChanges();
+
+      expect(iconEl.textContent).toBe('close');
+    });
+  })
+  describe('isolated testing', () => {
+    it('should toggle isOpen and emit toggleDrawer', () => {
+      spyOn(component.toggleDrawer, 'emit');
+
+      const initstate = component.isOpen;
+
+      component.onToggle();
+
+      expect(component.isOpen).toBe(!initstate);
+      expect(component.toggleDrawer.emit).toHaveBeenCalled();
+    });
+    it('should call searchMealByName and navigate to "/search" after 3 seconds when searchMeal called', fakeAsync(() => {
+      component.searchTerm = 'chocolate';
+      fixture.detectChanges();
+
+      component.searchMeal();
+      tick(3000);
+
+      expect(mockRecipesService.searchMealByName).toHaveBeenCalledWith('chocolate');
+      expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/search');
+      expect(component.searchTerm).toBe('');
+
+    }));
+    it('should navigate to "/favorites" when goToFav called', () => {
+      component.goToFav();
+
+      expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/favorites');
+    });
   });
 });
