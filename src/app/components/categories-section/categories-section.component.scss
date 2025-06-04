@@ -1,0 +1,63 @@
+@use '../../../styles/variables' as *; 
+@use '../../../styles/mixins' as *; 
+
+ .grid-container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: 1px solid $borderColor;
+
+    .grid-category{
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr);
+        // align-items: center;
+        // gap:16px;
+        padding: 40px 0 8px;
+        max-width: 700px;
+        .img-container{
+            // padding-top: 40px;
+            img{
+                width: 100%;
+            }
+        }
+        .content{
+            padding-left: 12px;
+            h3{
+                // @include heads-style;
+            }
+        }
+    }
+    .categories{
+        border-left: 1px solid $borderColor;
+        padding: 8px 0;
+        text-align: center;
+        //  background-color: $lightRedColor;
+        h2{
+            @include heads-style;
+            // margin:  0 auto;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+            li{
+                @include style-button;
+                border: none;
+                border-bottom: 1px solid $borderColor;
+                padding: 12px 12px 8px;
+                text-align: left;
+                color: $mainRedColor;
+                // font-size: $fieldSize;
+                &:last-child{
+                    padding-bottom: 0;
+                    border: none;
+                }
+                &:first-child{
+                    border-top: 1px solid $borderColor;
+                }
+                &.active{
+                    background-color: $mainRedColor !important;
+                    color: $whiteColor !important;
+                }
+            }
+        }
+    }
+}

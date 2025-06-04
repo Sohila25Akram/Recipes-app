@@ -1,63 +1,67 @@
-import { AfterViewInit, Component, computed, DestroyRef, effect, ElementRef, inject, OnInit, Signal, signal, ViewChild } from '@angular/core';
-import { WrapperComponent } from '../../components/wrapper/wrapper.component';
-import { RecipeItemComponent } from '../../components/recipe-item/recipe-item.component';
-import { RecipesService } from '../../services/recipes.service';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Meal } from '../../models/meal.model';
-import { map, take } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import { RecipeItemComponent } from '../../components/recipe-item/recipe-item.component';
+import { CategoriesSectionComponent } from '../../components/categories-section/categories-section.component';
 
 @Component({
   selector: 'app-home',
-  imports: [WrapperComponent, RecipeItemComponent, RouterLink],
+  imports: [ RecipeItemComponent, CategoriesSectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent{
-  private recipesService = inject(RecipesService);
-  private destroyRef = inject(DestroyRef);
+  recentRecipes: Meal[] = [
+    {
+      idMeal: '52982', 
+      strMeal: 'Spaghetti alla Carbonara', 
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg', 
+      strInstructions: '',
+      strCategory: 'Pasta'
+    },
+    {
+      idMeal: '52905',
+      strMeal: 'Chocolate Souffle',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/twspvx1511784937.jpg',
+      strInstructions: '',
+      strCategory: 'Dessert'
+    },
+     {
+      idMeal: '52963',
+      strMeal: 'Shakshuka',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/g373701551450225.jpg',
+      strInstructions: '',
+      strCategory: 'Vegetarian'
+    },
+     {
+      idMeal: '53076',
+      strMeal: 'Bread omelette',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/hqaejl1695738653.jpg',
+      strInstructions: 'Breakfast',
+      strCategory: 'Dessert'
+    }
+  ]
 
+  // recentRecipesIDs: string[] = [
+  //   '52982',
+  //   '52905',
+  //   '52963',
+  //   '53076'
+  // ]
 
-    private categoryRecipes = signal(new Map<string, Meal[]>());
-
-
-// @ViewChild('categoryTitle') categoryEL! : ElementRef;
-
-  // loadedCategoryRecipes = signal<Meal[]>([]);
-  // category!: string;
-  // loadedCategoryRecipes: any;
-  allCategories= computed(() => {
-    return this.recipesService.categoriesList();
-
-  })
-
-  // ngOnInit(): void {
-  //   this.recipesService.recipesOfCategory()
+  // constructor() {
+  //   this.loadRecentRecipes();
   // }
 
-  constructor() {
-    effect(() => {
-      const categories = this.allCategories();
-      categories.forEach((cat) => {
-        const categoryName = cat.strCategory;
-        if (!this.categoryRecipes().has(categoryName)) {
-          const supscription = this.recipesService.getSexRecipesOfCategory(categoryName)
-          .pipe(
-            map(meals => meals.slice(0, 5)) // take first 6 recipes from the response
-          )
-          .subscribe((meals) => {
-            const updatedMap = new Map(this.categoryRecipes());
-            updatedMap.set(categoryName, meals);
-            this.categoryRecipes.set(updatedMap);
-          });
-          this.destroyRef.onDestroy(() => supscription.unsubscribe())
-          
-        }
-      });
-    });
-  }
+  // loadRecentRecipes(){
+  //   setTimeout(() => {
+  //     const meals:Meal[] = [];
+  //     this.recentRecipesIDs.forEach(element => {
+  //       this.recipesService.getRecipeDetails(element);
+  //       meals.push(this.recipesService.singleMeal());
+  //     });
 
-  getRecipes(categoryName: string){
-    return this.categoryRecipes().get(categoryName) || [];
-  }
-  
+  //     this.recentRecipes.set(meals);
+  //   }, 2000)
+   
+  // }
 }

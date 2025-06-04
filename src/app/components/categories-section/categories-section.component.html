@@ -1,0 +1,21 @@
+<div class="grid-container">
+    @if(currentCategory()){
+        <div class="grid-category">
+            <div class="img-container">
+                <img src="{{currentCategory().strCategoryThumb}}" alt="">
+            </div>
+            <div class="content">
+                <h3>{{currentCategory().strCategory}}</h3>
+                <p>{{currentCategory().strCategoryDescription | ellipsisText}}</p>
+            </div>
+        </div>
+    }
+    <div class="categories">
+        <h2>our categories</h2>
+        <ul>
+            @for(category of categoriesList(); track category.idCategory){
+                <li (click)="setCurrentCategory(category.strCategory)" [class.active]="currentCategoryName() === category.strCategory">{{ category.strCategory }}</li>
+            }
+        </ul>
+    </div>
+</div>
