@@ -33,11 +33,11 @@ export class HeaderComponent{
 
   searchTerm = '';
 
-  isOpen: boolean = false;
+  // isOpen: boolean = false;
   @Output() toggleDrawer = new EventEmitter<boolean>()
 
   onToggle(){
-    this.isOpen = !this.isOpen;
+    // this.isOpen = !this.isOpen;
     this.toggleDrawer.emit();
   }
 
@@ -45,6 +45,11 @@ export class HeaderComponent{
   // onToggle() {
   //   this.toggleDrawer();
   // }
+
+  updateSearch(term: string) {
+    // this.searchedItem.set(term);
+    localStorage.setItem('searchedItem', term);
+  }
 
 
   searchMeal(){
@@ -54,9 +59,13 @@ export class HeaderComponent{
       this.searchTerm = '';
     }, 3000)
     console.log('Clicked!');
+    this.updateSearch(this.searchTerm)
   }
 
   goToFav(){
     this.router.navigateByUrl('/favorites');
+  }
+  goToAuth(){
+    this.router.navigateByUrl('/auth');
   }
 }

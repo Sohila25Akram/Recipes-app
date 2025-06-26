@@ -68,6 +68,18 @@ describe('HeaderComponent', () => {
 
       expect(component.goToFav).toHaveBeenCalled();
     });
+     it('should goToAuth() called when click on the button', () => {
+      const btnEl = fixture.debugElement.query(
+        By.css('.profile-icon')
+      ).nativeElement;
+
+      spyOn(component, 'goToAuth');
+
+      btnEl.click();
+      fixture.detectChanges();
+
+      expect(component.goToAuth).toHaveBeenCalled();
+    });
     it('should onToggle() called when click on the button', () => {
       const btnEl = fixture.debugElement.query(
         By.css('.menu-icon')
@@ -106,35 +118,7 @@ describe('HeaderComponent', () => {
       expect(inputEl.value).toBe('cheese');
     }));
   });
-  describe('isOpen', () => {
-    it('should menu icon returned when isOpen set to false', () => {
-      const iconEl = fixture.debugElement.query(By.css('.menu-icon mat-icon')).nativeElement;
-
-      component.isOpen = false;
-      fixture.detectChanges();
-
-      expect(iconEl.textContent).toBe('menu');
-    });
-     it('should close icon returned when isOpen set to true', () => {
-      const iconEl = fixture.debugElement.query(By.css('.menu-icon mat-icon')).nativeElement;
-
-      component.isOpen = true;
-      fixture.detectChanges();
-
-      expect(iconEl.textContent).toBe('close');
-    });
-  })
   describe('isolated testing', () => {
-    it('should toggle isOpen and emit toggleDrawer', () => {
-      spyOn(component.toggleDrawer, 'emit');
-
-      const initstate = component.isOpen;
-
-      component.onToggle();
-
-      expect(component.isOpen).toBe(!initstate);
-      expect(component.toggleDrawer.emit).toHaveBeenCalled();
-    });
     it('should call searchMealByName and navigate to "/search" after 3 seconds when searchMeal called', fakeAsync(() => {
       component.searchTerm = 'chocolate';
       fixture.detectChanges();

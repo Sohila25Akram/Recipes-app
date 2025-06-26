@@ -20,21 +20,34 @@ section{
         margin-bottom: 16px;
         margin-top: 32px;
     }
-    table{
-        border-collapse: collapse;
-        background: $whiteColor;
-        td{
-            // border: 1px solid #ccc;
-            border: 1px solid #cccccc75;
-            padding: 4px 16px;
-            color: $textColorBlackLight;
-            font-family: $fontFamily;
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        .ingredients-container, .measures-container{
+            border: 1px solid $borderColor;
+            >div{
+                padding: 12px;
+            }
+        }
+        .ingredients-container{
+            border-right: 0;
         }
     }
+    // table{
+    //     border-collapse: collapse;
+    //     background: $whiteColor;
+    //     td{
+    //         // border: 1px solid #ccc;
+    //         border: 1px solid #cccccc75;
+    //         padding: 4px 16px;
+    //         color: $textColorBlackLight;
+    //         font-family: $fontFamily;
+    //     }
+    // }
 
-    ::ng-deep thead{
-        display: none;
-    }
+    // ::ng-deep thead{
+    //     display: none;
+    // }
     p{
         line-height: 2;
         margin-top: 0;

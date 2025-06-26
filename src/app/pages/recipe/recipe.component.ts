@@ -40,8 +40,10 @@ export class RecipeComponent implements OnInit {
   currentMealId!: string;
   // currentRecipe$!: Observable<Meal>;
 
-  ingredients = signal<string[]>([]);
-  measures = signal<string[]>([]);
+  // ingredients = signal<string[]>([]);
+  ingredients: string[] = [];
+  // measures = signal<string[]>([]);
+  measures: string[] = [];
 
   ngOnInit() {
     const supscription = this.activatedRoute.paramMap.subscribe({
@@ -130,6 +132,33 @@ export class RecipeComponent implements OnInit {
       this.recipesService.addToFavourite(this.currentMealId);
     }
     console.log('click add to fav');
+  }
+  getIngredients (){
+    return this.getTableData('ingredients', 'strIngredient');
+  }
+
+  getMeasures (){
+    return this.getTableData('measures', 'strMeasure')
+  }
+
+  getTableData(column: 'ingredients' | 'measures', str: 'strMeasure' | 'strIngredient'){
+    const details = this.recipe();
+
+    if (!details) return;
+
+    const result: string[] = [];
+
+    for (let i = 1; i <= 20; i++) {
+      const key = `${str}${i}` as keyof typeof details;
+      const item = details[key];
+
+      if (item && item.trim() !== '') {
+        result.push(item);
+      }
+    }
+    this[column] = result;
+
+    return this[column];
   }
 }
 

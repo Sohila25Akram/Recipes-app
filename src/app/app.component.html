@@ -9,7 +9,7 @@
            
         </div>
     </mat-drawer-content>
-     <mat-drawer #drawer mode="side" [opened]="isDrawerOpen" position="end">
+     <mat-drawer #drawer [opened]="isDrawerOpen" position="end">
         <nav>
             <ul>
                 @for(link of links; track link.title){

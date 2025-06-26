@@ -73,6 +73,37 @@ export class RecipesService {
   });
   recipesOfCategory = signal<Meal[]>([]);
 
+  recentRecipes: Meal[] = [
+    {
+      idMeal: '52982', 
+      strMeal: 'Spaghetti alla Carbonara', 
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg', 
+      strInstructions: '',
+      strCategory: 'Pasta'
+    },
+    {
+      idMeal: '52905',
+      strMeal: 'Chocolate Souffle',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/twspvx1511784937.jpg',
+      strInstructions: '',
+      strCategory: 'Dessert'
+    },
+     {
+      idMeal: '52963',
+      strMeal: 'Shakshuka',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/g373701551450225.jpg',
+      strInstructions: '',
+      strCategory: 'Vegetarian'
+    },
+     {
+      idMeal: '53076',
+      strMeal: 'Bread omelette',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/hqaejl1695738653.jpg',
+      strInstructions: 'Breakfast',
+      strCategory: 'Dessert'
+    }
+  ]
+
   constructor(){
     this.loadCategories();
     afterNextRender(() => {
@@ -85,6 +116,8 @@ export class RecipesService {
       map(res => [...res.categories].reverse())
     ).subscribe(categories => {this.categoriesList.set(categories)});
   }
+
+  
 
   
   private loadFavoritesFromLocalStorage(): Meal[] {
@@ -171,8 +204,9 @@ export class RecipesService {
   addToFavourite(id: string){
     const categoryRecipes = this.recipesOfCategory() || [];
     const searchedRecipes = this.searchedMeals() || [];
+    const recentRecipes = this.recentRecipes || [];
 
-    const allRecipes = [...categoryRecipes, ...searchedRecipes];
+    const allRecipes = [...categoryRecipes, ...searchedRecipes, ...recentRecipes];
 
     const recipe = allRecipes.find(r => r.idMeal === id);
 

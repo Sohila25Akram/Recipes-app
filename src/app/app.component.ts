@@ -48,6 +48,10 @@ export class AppComponent {
  
 
   handleToggleDrawer () {
-    this.isDrawerOpen = !this.isDrawerOpen
+    this.isDrawerOpen = !this.isDrawerOpen;
+  }
+
+  getInConsole(){
+    console.log('back')
   }
 }

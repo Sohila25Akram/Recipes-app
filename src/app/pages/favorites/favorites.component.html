@@ -1,48 +1,47 @@
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-  
-      
-      <!-- Image Column -->
-      <ng-container matColumnDef="strMealThumb">
-        <th mat-header-cell *matHeaderCellDef> Image </th>
-        <td mat-cell *matCellDef="let element"> 
-          <div class="meal-img">
-            <img [src]="element.strMealThumb" alt=""> 
-          </div>
-        </td>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="strMeal">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.strMeal}} </td>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="strCategory">
-        <th mat-header-cell *matHeaderCellDef> Category </th>
-        <td mat-cell *matCellDef="let element"> {{element.strCategory}} </td>
-      </ng-container>
-
-    <!-- view details Column -->
-    <ng-container matColumnDef="idMeal">
-        <th mat-header-cell *matHeaderCellDef> View Details </th>
-        <td mat-cell *matCellDef="let element">
-          <div class="flex">
-                        <button mat-stroked-button [routerLink]="['../recipes', element.idMeal]">view details</button> 
-                <button class="delete-btn" (click)="deleteFromFav(element.idMeal)">Delete</button>
-          </div>
-        </td>
+<div class="container">
+  @if(recipesInFavorite().length > 0){
+  <div [appLoader]="isLoading">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+    
+        
+        <!-- Image Column -->
+        <ng-container matColumnDef="strMealThumb">
+          <th mat-header-cell *matHeaderCellDef> Image </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div class="meal-img">
+              <img [src]="element.strMealThumb" alt=""> 
+            </div>
+          </td>
         </ng-container>
-      
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons
-                   aria-label="Select page of periodic elements">
-    </mat-paginator>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="strMeal">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"><a [routerLink]="['/recipes', element.idMeal]">{{element.strMeal}}</a></td>
+        </ng-container>
+
+      <!-- view details Column -->
+      <ng-container matColumnDef="idMeal">
+          <th mat-header-cell *matHeaderCellDef> View Details </th>
+          <td mat-cell *matCellDef="let element">
+              <!-- <button mat-stroked-button [routerLink]="['../recipes', element.idMeal]"><span>view details</span><mat-icon class="custom-icon">lunch_dining</mat-icon></button>  -->
+              <button class="delete-btn" (click)="deleteFromFav(element.idMeal)"><span>Delete</span><mat-icon class="custom-icon">delete</mat-icon></button>
+          </td>
+          </ng-container>
+        
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                    showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
   </div>
-  
+  }@else{
+    <h2 class="no-favs">No Recipes Added</h2>
+  }
+</div>

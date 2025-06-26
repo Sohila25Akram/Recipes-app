@@ -1,3 +1,6 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+
 table{
     background: transparent;
 }
@@ -13,7 +16,38 @@ table{
 td, th{
     border: 0;
 }
-.flex{
+th{
+    display: none;
+}
+td{
+    border-bottom: 1px solid $borderColor;
+    a{
+        color: $mainRedColor;
+        text-decoration: none;
+        font-size: 16px;
+    }
+}
+button{
+    @include style-button;
     display: flex;
-    gap: 16px;
+    align-items: center;
+    gap: 8px;
+    min-width: auto;
+    margin-left: auto;
+    span{
+        display: none;
+        @media (min-width: 768px){
+            display: block;
+        }
+    }
+   .custom-icon{
+    color: #ba005c;
+   }
+}
+.container{
+    @include container;
+}
+.no-favs{
+    text-align: center;
+    padding-top: 120px;
 }

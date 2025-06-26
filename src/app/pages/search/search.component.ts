@@ -46,16 +46,21 @@ export class SearchComponent implements OnDestroy {
   isLoading: boolean = false;
 
   searchedItem = signal<string>('');
-  destroy$ = new Subject<void>();
 
-  constructor(){
-    afterNextRender(()=>{
-      const term  = localStorage.getItem('searchedItem');
-      if(term){
-        this.searchedItem.set(term);
-      }
-    })
+  constructor() {
+    const term = localStorage.getItem('searchedItem');
+    if (term) {
+      this.searchedItem.set(term);
+      this.searchTerm = term;
+      this.searchMeal();
+    }
   }
+
+  updateSearch(term: string) {
+    this.searchedItem.set(term);
+    // localStorage.setItem('searchedItem', term);
+  }
+  destroy$ = new Subject<void>();
 
   searchMeal(){
     this.isLoading = true;
@@ -78,6 +83,7 @@ export class SearchComponent implements OnDestroy {
       }, 3000)
     )
     console.log('Clicked!');
+    this.updateSearch(this.searchTerm);
   }
 
   ngOnDestroy(): void {

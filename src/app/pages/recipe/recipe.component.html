@@ -12,6 +12,19 @@
             <img src="{{recipe().strMealThumb}}" alt="">
         </div>
         <h3>ingredients</h3>
+        <div class="grid">
+            <div class="ingredients-container">
+                @for(ingredient of getIngredients(); track ingredient){
+                    <div>{{ingredient}}</div>
+                }
+            </div>
+            <div class="measures-container">
+                @for(measure of getMeasures(); track measure){
+                    <div>{{measure}}</div>
+                }
+            </div>
+
+        </div>
         <!-- <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
 
 
