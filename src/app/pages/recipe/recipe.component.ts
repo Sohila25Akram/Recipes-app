@@ -16,6 +16,7 @@ import { WrapperComponent } from '../../components/wrapper/wrapper.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recipe',
@@ -29,6 +30,8 @@ export class RecipeComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   private recipesService = inject(RecipesService);
+
+  private snackBar = inject(MatSnackBar);
 
   recipe = computed(() => {
     return this.recipesService.singleMeal();
@@ -130,7 +133,11 @@ export class RecipeComponent implements OnInit {
   addToFav() {
     if (this.currentMealId) {
       this.recipesService.addToFavourite(this.currentMealId);
+      this.snackBar.open('Recipe Added to Fav', 'Close', {
+        duration: 3000
+      });
     }
+
     console.log('click add to fav');
   }
   getIngredients (){

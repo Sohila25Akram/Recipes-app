@@ -8,6 +8,6 @@
 </section>
 <section>
     <h3>search</h3>
-    <input type="text" placeholder="search">
-    <button class="submit">search</button>
+    <input type="text" placeholder="search" [(ngModel)]="searchTerm" aria-label="search" (keydown.enter)="goToSearch()">
+    <button type="button" aria-label="search button" (click)="goToSearch()">search</button>
 </section>

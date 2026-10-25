@@ -6,6 +6,7 @@ import { catchError, map, of, Subject, takeUntil } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderDirective } from '../../../directives/loader.directive';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnDestroy{
   private destroy$ = new Subject<void>();
   private router = inject(Router);
   private ngZone = inject(NgZone);
+  private snackBar = inject(MatSnackBar);
 
   isLoggged = signal(false);
   currentForm : 'Login' | 'Signup' = 'Signup';
@@ -49,6 +51,11 @@ export class LoginComponent implements OnDestroy{
             console.log('Login response:', res);
             this.isLoggged.set(true);
             this.isLoading.set(false);
+            
+             this.snackBar.open('Login successful!', 'Close', {
+              duration: 3000
+            });
+            
             this.router.navigateByUrl('/');
           },
           error: (err: HttpErrorResponse) => {

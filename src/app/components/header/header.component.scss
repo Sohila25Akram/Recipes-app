@@ -38,6 +38,22 @@ mat-toolbar.nav-bar{
   //   width: fit-content;
   // }
 }
+.profile-button{
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  > span{
+    font-size: 12px;
+    color: $whiteColor;
+  }
+}
+.login-button{
+  background-color: $whiteColor;
+  color: $mainRedColor !important;
+ 
+    height: fit-content !important;
+  
+}
 
 // ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
 //     background-color: transparent;

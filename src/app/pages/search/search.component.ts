@@ -14,6 +14,7 @@ import { LoaderDirective } from '../../directives/loader.directive';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { WrapperComponent } from '../../components/wrapper/wrapper.component';
 import { Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -39,27 +40,37 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class SearchComponent implements OnDestroy {
   private recipesService = inject(RecipesService);
+  private activatedRoute = inject(ActivatedRoute);
   private cdr = inject(ChangeDetectorRef);
   private ngZone = inject(NgZone)
 
   searchTerm = '';
   isLoading: boolean = false;
 
-  searchedItem = signal<string>('');
+  // searchedItem = signal<string>('');
 
-  constructor() {
-    const term = localStorage.getItem('searchedItem');
-    if (term) {
-      this.searchedItem.set(term);
+  ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe(params => {
+       const term = params.get('searchTerm') ?? '';
+
       this.searchTerm = term;
-      this.searchMeal();
-    }
+      // this.searchedItem.set(term);
+    })
   }
 
-  updateSearch(term: string) {
-    this.searchedItem.set(term);
-    // localStorage.setItem('searchedItem', term);
-  }
+  // constructor() {
+  //   const term = localStorage.getItem('searchedItem');
+  //   if (term) {
+  //     this.searchedItem.set(term);
+  //     this.searchTerm = term;
+  //     this.searchMeal();
+  //   }
+  // }
+
+
+  // updateSearch(term: string) {
+  //   this.searchedItem.set(term);
+  // }
   destroy$ = new Subject<void>();
 
   searchMeal(){
@@ -83,7 +94,7 @@ export class SearchComponent implements OnDestroy {
       }, 3000)
     )
     console.log('Clicked!');
-    this.updateSearch(this.searchTerm);
+    // this.updateSearch(this.searchTerm);
   }
 
   ngOnDestroy(): void {

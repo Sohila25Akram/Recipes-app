@@ -41,6 +41,18 @@ export class AppComponent {
       path: '/search',
       title: 'search'
     },
+    {
+      path: '/favorites',
+      title: 'favourites'
+    },
+     {
+      path: '/about',
+      title: 'about us'
+    },
+      {
+      path: '/support',
+      title: 'support'
+    },
   ]
 
   isDrawerOpen: boolean = false;

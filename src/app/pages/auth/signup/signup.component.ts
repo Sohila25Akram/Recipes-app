@@ -6,6 +6,7 @@ import {MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-fi
 import { catchError, debounceTime, map, of, Subject, take, takeUntil } from 'rxjs';
 import { LoaderDirective } from '../../../directives/loader.directive';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 function notContainsNumber(control: AbstractControl) {
@@ -68,6 +69,7 @@ export class SignupComponent implements OnDestroy{
    private router = inject(Router);
    private destroy$ = new Subject<void>();
    private ngZone = inject(NgZone);
+   private snackBar = inject(MatSnackBar);
 
 
   isLoggged = signal(false);
@@ -114,6 +116,9 @@ export class SignupComponent implements OnDestroy{
           (res) => {
             console.log(res);
             this.isLoading.set(false);
+            this.snackBar.open('Account Created Successful!', 'Close', {
+              duration: 3000
+            });
             this.router.navigateByUrl('/auth');
           });
       }, 3000)

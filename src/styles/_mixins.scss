@@ -109,3 +109,12 @@
     width: 80%;
     margin: 0 auto;
 }
+
+@mixin card-hover{
+  box-shadow: 2px 2px 12px 4px $borderColor ;
+  img{
+    transition: 0.2s ease;
+
+    transform: scale(1.3);
+  }
+}

@@ -9,9 +9,17 @@
   // border-bottom: 1px solid #eee;
   // font-family: 'Segoe UI', sans-serif;
 
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+
+  &:hover{
+    @include card-hover;
+  }
   .image-wrapper {
     width: 100%;
     // max-width: 300px;
+    overflow: hidden;
 
     img {
       width: 100%;
@@ -23,7 +31,7 @@
   }
 
   .content {
-
+    padding: 0 16px;
     .title {
       font-size: $titleSize;
       font-weight: 600;

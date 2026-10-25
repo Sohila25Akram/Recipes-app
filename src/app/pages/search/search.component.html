@@ -5,9 +5,9 @@
     search
   </button> -->
 <app-wrapper>
-    <h2>Search results: {{searchedItem()}}</h2>
+    <h2>Search results: {{searchTerm}}</h2>
     <div class="flex">
-      <input aria-label="search" [(ngModel)]="searchTerm" placeholder="search"/>
+      <input aria-label="search" [(ngModel)]="searchTerm" (keydown.enter)="searchMeal()" placeholder="search"/>
       <button (click)="searchMeal()" aria-label="search button">
         search
       </button>

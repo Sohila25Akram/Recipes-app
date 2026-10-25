@@ -32,5 +32,13 @@ export const routes: Routes = [
     {
         path: ':categoryName/recipes',
         loadComponent: () => import('./pages/category-recipes/category-recipes.component').then(c => c.CategoryRecipesComponent)
-    }
+    },
+    // {
+    //     path: 'not-found',
+    //     loadComponent: () => import('./pages/not-found/not-found.component').then(c => c.NotFoundComponent)
+    // },
+    {
+        path: '**',
+        loadComponent: () => import('./pages/not-found/not-found.component').then(c => c.NotFoundComponent)
+    },
 ];

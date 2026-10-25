@@ -1,11 +1,11 @@
 @if(recipeItem){
-  <div class="recipe-card">
+  <a class="recipe-card" [routerLink]="path">
     <div class="image-wrapper">
       <img src="{{ recipeItem.strMealThumb }}" alt="{{ recipeItem.strMeal }}" />
     </div>
     <div class="content">
-      <h2 class="title"><a class="read-more" [routerLink]="path">{{ recipeItem.strMeal }}</a></h2>
+      <h2 class="title">{{ recipeItem.strMeal }}</h2>
       <p class="meta">October 9, 2023 / <span class="author">Lucid Themes</span></p>
     </div>
-  </div>
+  </a>
 }

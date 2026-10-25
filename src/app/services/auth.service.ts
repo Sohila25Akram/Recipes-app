@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpSignupResponse, User } from '../models/user.model';
-import { BehaviorSubject, map, Observable, of, take } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, take, throwError } from 'rxjs';
 // import { LogedUser } from '../models/user.model';
 
 
@@ -15,6 +15,7 @@ export class AuthService {
   private apiService = inject(ApiService);
 
   user = new BehaviorSubject<User | null>(null);
+  isLogged = signal<boolean>(false);
 
   login(username: string, password: string) {
     const newUserString = localStorage.getItem('newUser');
@@ -24,9 +25,13 @@ export class AuthService {
 
 
       if (newUser?.username === username && newUser?.password === password) {
-        this.createToken(newUser);
+        const loginUser = this.createToken(newUser);
+
+        return of(loginUser);
       }
-      return of();
+      return throwError(() =>
+        new Error('Invalid username or password')
+      );
     }else{
       return this.apiService.request<User>('POST', `${this.url}/login`, {
         body : {
@@ -37,6 +42,7 @@ export class AuthService {
       }).pipe(
         map(userData => {
           this.user.next(userData);
+          this.isLogged.set(true);
           localStorage.setItem('userData', JSON.stringify(userData));
         })
       )
@@ -80,7 +86,8 @@ export class AuthService {
     );
 
     if(loadedUser.accessToken){
-      this.user.next(loadedUser)
+      this.user.next(loadedUser);
+      this.isLogged.set(true);
     }
 
 
@@ -102,6 +109,19 @@ export class AuthService {
     .pipe(
       map(res => {
         localStorage.setItem('newUser', JSON.stringify(res))
+
+        const newUser = {
+          ...res,
+          password,
+          accessToken: null,
+          refreshToken: null
+        };
+
+        localStorage.setItem(
+          'newUser',
+          JSON.stringify(newUser)
+        );
+
         return res;
       })
     )
