@@ -10,13 +10,21 @@
     // background-image: url('https://www.errenskitchen.com/wp-content/uploads/2020/02/easy-chocolate-dessert-1-1.jpg');
     background-image: url('https://www.foodandwine.com/thmb/ckc6L6xKox0WfpfO6dMkuVGPQOY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Angel-Food-Cake-with-Three-Berry-Compote-FT-RECIPE0323-541a780b871441e0ab14383ee38acc44.jpg');
     background-size: cover;
-    padding-top: 60px;
+    // padding-top: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (min-width: 990px){
+        align-items: flex-start;
+        padding-top: 120px;
+    }
     .container{
-        display: flex;
-        align-items: flex-end;
+        // display: flex;
+        // align-items: flex-end;
         // justify-content: flex-end;
         height: 100%;
-        padding-bottom: 60px;
+        // padding-bottom: 60px;
     }
     article{
         background-color: $whiteColor;

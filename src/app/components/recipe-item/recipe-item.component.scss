@@ -12,6 +12,7 @@
   text-decoration: none;
   color: inherit;
   display: inline-block;
+  height: 100%;
 
   &:hover{
     @include card-hover;

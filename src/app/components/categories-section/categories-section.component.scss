@@ -2,9 +2,24 @@
 @use '../../../styles/mixins' as *; 
 
  .grid-container{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+   
+    display: grid;    
     border: 1px solid $borderColor;
+
+    @media (min-width: 990px){
+        // display: grid;
+        direction: rtl;
+        grid-template-columns: 1fr 2fr;
+
+        > * {
+            direction: ltr;
+        }
+
+    }
+
+    // > * {
+    //     direction: ltr; /* Restores normal text direction inside the items */
+    //     }
 
     .grid-category{
         // display: grid;
@@ -13,6 +28,7 @@
         // gap:16px;
         padding: 40px 0 8px;
         max-width: 700px;
+        
         .img-container{
             // padding-top: 40px;
             img{
@@ -38,6 +54,12 @@
         ul{
             list-style: none;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            @media (min-width: 990px){
+                display: block;
+            }
+
             li{
                 @include style-button;
                 border: none;
@@ -45,6 +67,12 @@
                 padding: 12px 12px 8px;
                 text-align: left;
                 color: $mainRedColor;
+                text-align: center;
+                flex-grow: 1;
+
+                @media (min-width: 990px){
+                    text-align: left;
+                }
                 // font-size: $fieldSize;
                 &:last-child{
                     padding-bottom: 0;

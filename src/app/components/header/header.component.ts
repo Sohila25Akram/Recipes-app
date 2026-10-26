@@ -89,9 +89,9 @@ export class HeaderComponent{
     this.searchTerm = '';
   }
 
-  goToFav(){
-    this.router.navigateByUrl('/favorites');
-  }
+  // goToFav(){
+  //   this.router.navigateByUrl('/favorites');
+  // }
   goToAuth(){
     this.router.navigateByUrl('/auth');
   }
